@@ -3,7 +3,7 @@ import json
 import sys
 
 # just setting max no of records to be read
-count = 100000
+#count = 100000
 
 # preloading functions just for speed
 json_dict = json.loads
