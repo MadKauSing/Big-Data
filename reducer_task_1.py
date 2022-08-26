@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 import sys
-
-
-prevWord=""
-valueTotal=0
+dictionary = {}
+keys = []
 for line in sys.stdin:
-  (word,values)=line.split('\t')
-  value=int(values.strip())
-  if word==prevWord or prevWord=='':
-    valueTotal=valueTotal+value
-    prevWord=word
-  else:
-    print prevWord,'\t',valueTotal
-    prevWord=word
-    valueTotal=value
-print prevWord,'\t',valueTotal
+
+    # faster lookups
+    try:
+        (word, values) = line.split()
+        value = int(values.strip())
+
+        if word not in dictionary.keys():
+            dictionary[word] = value
+        else:
+            dictionary[word] = dictionary[word]+value
+    except:
+        pass
+for date in dictionary:
+  print(date,dictionary[date])
