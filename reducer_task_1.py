@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import sys
+
+
 prevWord=""
 valueTotal=0
 for line in sys.stdin:

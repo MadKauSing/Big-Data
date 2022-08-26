@@ -8,9 +8,9 @@ count=100000
 #preloading functions just for speed
 json_dict=json.loads
 
-
 for line in sys.stdin:
   try:
+    #remove this while submitting hadoop
     if count==0: break
     count=count-1
     
