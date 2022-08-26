@@ -1,0 +1,7 @@
+{sensor_id:123,location:124 ,lat:10 ,lon:15,timestamp:2018-01-07 ,pressure:45,temperature:241,humidity:40}
+{sensor_id:123,location:124 ,lat:10 ,lon:15,timestamp:2018-01-07 ,pressure:45,temperature:241,humidity:40}
+{sensor_id:123,location:124 ,lat:10 ,lon:15,timestamp:2018-01-07 ,pressure:45,temperature:241,humidity:40}
+{sensor_id:123,location:124 ,lat:10 ,lon:15,timestamp:2018-01-07 ,pressure:45,temperature:241,humidity:40}
+{sensor_id:123,location:124 ,lat:10 ,lon:15,timestamp:2018-01-07 ,pressure:45,temperature:241,humidity:40}
+{sensor_id:123,location:124 ,lat:10 ,lon:15,timestamp:2018-01-07 ,pressure:45,temperature:241,humidity:40}
+{sensor_id:123,location:124 ,lat:10 ,lon:15,timestamp:2018-01-07 ,pressure:45,temperature:241,humidity:40}
