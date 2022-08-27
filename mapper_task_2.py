@@ -30,6 +30,6 @@ for line in sys.stdin:
 
         if check_constraints(data):
             if check_distance(data):
-                print(f"{data['timestamp']},1")
+                print(data['timestamp'],1)
     except:
         pass
