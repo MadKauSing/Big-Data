@@ -23,3 +23,10 @@ Print output onto terminal
 ```shell
 hdfs dfs -cat /folder/output/part-00000
 ```
+
+# Running on python using pipes
+
+Example: Running task 1
+```shell
+cat Air_Quality_2018.json | python3 mapper_task_1.py | sort -k 1,1 | python3 reducer_task_1.py > output.txt
+```
