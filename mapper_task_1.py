@@ -2,24 +2,26 @@
 import json
 import sys
 
-# just setting max no of records to be read
-#count = 100000
+# constraint function
 
-# preloading functions just for speed
+
+def check_constraints(data):
+    if data['location'] > 1700 and data['location'] < 2500:
+        if data['sensor_id'] < 5000:
+            if data['pressure'] >= 93500.00:
+                if data['humidity'] >= 72.00:
+                    if data['temperature'] >= 12.00:
+                        return 1
+    return 0
+
+
+# loading function for optimisation
 json_dict = json.loads
 
 for line in sys.stdin:
     try:
-        # remove this while submitting hadoop
-        # if count == 0:
-        #     break
-        # count = count-1
-
-        data_dict = json_dict(line)
-        # print(data_dict)
-
-        if (data_dict['location'] > 1700 and data_dict['location'] < 2500) and data_dict['sensor_id'] < 5000 and data_dict['pressure'] >= 93500.00 and data_dict['humidity'] >= 72.00 and data_dict['temperature'] >= 12.00:
-            print(data_dict['timestamp'], 1)
+        data = json_dict(line)
+        if check_constraints(data):
+            print(data['timestamp'], 1)
     except:
-        # I removed the exception cuz it would lead to problems in reducer
         pass

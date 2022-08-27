@@ -8,6 +8,8 @@ d = float(sys.argv[1])
 lat = float(sys.argv[2])
 lon = float(sys.argv[3])
 
+# helper functions
+
 
 def check_constraints(data):
     if data["humidity"] > 48 and data["humidity"] < 54:
@@ -23,13 +25,16 @@ def check_distance(data):
     return 0
 
 
+# loading function for optimisation
+json_dict = json.loads
+
 for line in sys.stdin:
     try:
-        data = json.loads(line)
+        data = json_dict(line)
         # print(data)
 
         if check_constraints(data):
             if check_distance(data):
-                print(f"{data['timestamp']},1")
+                print(data['timestamp'], 1)
     except:
         pass
