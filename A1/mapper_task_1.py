@@ -25,3 +25,4 @@ for line in sys.stdin:
             print(data['timestamp'], 1)
     except:
         pass
+

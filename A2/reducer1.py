@@ -1,28 +1,21 @@
-
-
+import sys
 curr_word=None
 
 for line in sys.stdin:
-
-    # faster lookups
     try:
         (word, value) = line.split()
         value = int(values.strip())
-        
-        if curr_word == word:
-            print(f", {value}",end="")
-        
-        else:
-            if curr_word:
-                print(f"]")
-                print(f"[{curr_word}")
-                
-                curr_word=word
-            
-            else:
-                print(f"[{curr_word}")
-                curr_word=word
-    
-    
     except:
         pass
+    if curr_word == word:
+        print(f", {value}",end="")
+    else:
+        if curr_word:
+            print(f"]")
+            curr_word=word
+            print(f"{curr_word}\t[{value}",end="")
+        else:
+            curr_word=word
+            print(f"{curr_word}\t[{value}",end="")
+
+print("]")

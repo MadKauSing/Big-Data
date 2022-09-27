@@ -1,8 +1,4 @@
-
-
-
-# loading function for optimisation
-json_dict = json.loads
+import sys
 
 for line in sys.stdin:
     try:
