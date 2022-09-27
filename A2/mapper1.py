@@ -5,9 +5,12 @@ print_function=print
 
 for line in sys.stdin:
     try:
-        source,dest=line.split()
-        source=int(source)
-        dest=dest.strip()
-        print_function(source,dest)
+
+        temp=line.split()
+        if temp[0]!='#':
+            source,dest=temp
+            source=int(source)
+            dest=dest.strip()
+            print_function(source,dest)
     except:
         pass
