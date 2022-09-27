@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 
 path_to_file = sys.argv[1]
