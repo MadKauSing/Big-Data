@@ -1,6 +1,10 @@
 import sys
+
+path_to_file = sys.argv[1]
+
 curr_word=None
 int_function=int
+
 
 def stringIsEqual(word1,word2):
     if word1==word2:
@@ -8,6 +12,7 @@ def stringIsEqual(word1,word2):
     else:
         return False
 
+fob=open(path_to_file,'w')
 
 for line in sys.stdin:
     try:
@@ -21,8 +26,10 @@ for line in sys.stdin:
         if curr_word:
             print(f"]")
             curr_word=word
+            fob.write(f"{curr_word},1\n")
             print(f"{curr_word}\t[{value}",end="")
         else:
             curr_word=word
+            fob.write(f"{curr_word},1\n")
             print(f"{curr_word}\t[{value}",end="")
 print("]")
