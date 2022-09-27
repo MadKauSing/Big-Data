@@ -17,5 +17,4 @@ for line in sys.stdin:
         else:
             curr_word=word
             print(f"{curr_word}\t[{value}",end="")
-
 print("]")
