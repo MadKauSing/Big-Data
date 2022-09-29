@@ -26,7 +26,7 @@ for line in sys.stdin:
     else:
         if curr_word:
             print(f"]")
-            curr_word=word
+            curr_word=wordf
             fob.write(f"{curr_word},1\n")
             print(f"{curr_word}\t[{value}",end="")
         else:
