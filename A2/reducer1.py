@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import sys
 
+# To run this
+# cat test.txt | python3 mapper1.py | python3 reducer1.py w.txt >output.txt
+
 path_to_file = sys.argv[1]
 
 curr_word=None
@@ -18,7 +21,7 @@ fob=open(path_to_file,'w')
 for line in sys.stdin:
     try:
         (word, value) = line.split()
-        value = int_function(values.strip())
+        value = int_function(value.strip())
     except:
         pass
     if curr_word == word:
@@ -26,7 +29,7 @@ for line in sys.stdin:
     else:
         if curr_word:
             print(f"]")
-            curr_word=wordf
+            curr_word=word
             fob.write(f"{curr_word},1\n")
             print(f"{curr_word}\t[{value}",end="")
         else:
