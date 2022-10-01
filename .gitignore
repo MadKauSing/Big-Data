@@ -1,4 +1,4 @@
 # Ignoring datasets
-*.json
+
 output.txt
 *an.txt

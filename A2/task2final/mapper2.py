@@ -24,8 +24,8 @@ for i in page_embed_dic.keys():
     dic[i]=0
 
 
-
 def help_multiply_vectors(x,y,kernel_size=6):
+    #this function is correct checked with numpy
     n1=len_function(x)
     n2=len_function(y)
 
@@ -36,7 +36,7 @@ def help_multiply_vectors(x,y,kernel_size=6):
         i=0
         boundary=n1-kernel_size-1
         while i < boundary:
-            s+=x[i]*y[i]
+            s+=x[i+0]*y[i+0]
             s+=x[i+1]*y[i+1]
             s+=x[i+2]*y[i+2]
             s+=x[i+3]*y[i+3]
@@ -52,24 +52,20 @@ def help_multiply_vectors(x,y,kernel_size=6):
 def calculate_similarity(p,q,cache):
     dot_product = help_multiply_vectors(p,q)
     if cache is None:
-        # Compute Dot product, Norms of p and q using loop unrolling. 
-        # (Note you can compute everything in one loop unrolling segment).
-        # norm_p = (p[0]**2 + p[1]**2 + p[2]**2 + p[3]**2 + p[4]**2 + p[5]**2)**(1/2)
         norm_p = help_multiply_vectors(p,p)
         norm_q = help_multiply_vectors(q,q)
         cache = norm_p
         similarity = (dot_product)/(norm_p + norm_q - dot_product)
     else:
-        norm_q = help_multiply_vectors(q,q)
-        # Compute Dot product, Norm of q using loop unrolling. 
-        # (Note you can compute everything in one loop unrolling segment).
+        norm_q = help_multiply_vectors(q,q)    
         similarity = dot_product/(cache + norm_q - dot_product)
+    
     return similarity, cache
 
 
 def calculate_contribution(p,q,no_out,r_dash,p_cache):
     similarity,p_cache=calculate_similarity(p,q,p_cache)  
-    contribution=similarity*(r_dash/no_out)
+    contribution=(similarity*r_dash)/no_out
     return contribution,p_cache
 
 
@@ -85,11 +81,10 @@ for line in sys.stdin:
     node,node_outgoing = line.split('\t')
     
     node_outgoing=re.sub(r'[^\w]', ' ', node_outgoing).split()
-    # print(node,node_outgoing)
-    # print(w_node,w_rank)
     cache=None
+    
     for i in node_outgoing:
-        contribution, cache = calculate_contribution(page_embed_dic[str(node)],page_embed_dic[str(i)],len(page_embed_dic[str(i)]),int(w_rank),cache)
+        contribution, cache = calculate_contribution(page_embed_dic[str(node)],page_embed_dic[str(i)],len(node_outgoing),int(w_rank),cache)
         print(i,contribution)
         if dic[i]==0:
             dic[i]=1
