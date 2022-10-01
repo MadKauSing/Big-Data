@@ -23,7 +23,7 @@ for line in sys.stdin:
         value = float_function(value.strip())
     except:
         pass
-    if curr_word == word:
+    if stringIsEqual(curr_word,word):
         curr_sum+=value
     else:
         if curr_word:
