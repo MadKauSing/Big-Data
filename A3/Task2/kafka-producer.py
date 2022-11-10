@@ -16,7 +16,8 @@ for line in sys.stdin:
     # print(l)
     if l[0] == "EOF":
         for key in sorted(main.keys()):
-            ack = producer.send(tn, value={key: [main[key][0], main[key][1]]})
+            ack = producer.send(tn, value={key: [round(
+                main[key][0]/main[key][2], 2), round(main[key][1]/main[key][2], 2)]})
             meta = ack.get()
         ack = producer.send(tn, value={"msg": "End of transmission"})
         meta = ack.get()
@@ -26,8 +27,8 @@ for line in sys.stdin:
             main[l[0]] = d
         else:
             count = main[l[0]][2]
-            new_val = [round((((main[l[0]][0]*count)+d[0])/(count+1)), 2),
-                       round((((main[l[0]][1]*count)+d[1])/(count+1)), 2), count+1]
+            new_val = [main[l[0]][0]+d[0],
+                       main[l[0]][1]+d[1], count+1]
             main.update({l[0]: new_val})
 
 # for key,value in main.items():
