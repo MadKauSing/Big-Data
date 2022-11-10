@@ -14,7 +14,13 @@ for line in sys.stdin:
     # print(file)
     l = list(csv.reader([line]))[0]
     # print(l)
-    if l[0] != "EOF":
+    if l[0] == "EOF":
+        for key in sorted(main.keys()):
+            ack = producer.send(tn, value={key: [main[key][0], main[key][1]]})
+            meta = ack.get()
+        ack = producer.send(tn, value={"msg": "End of transmission"})
+        meta = ack.get()
+    else:
         d = [float(l[6]), float(l[7]), 1]
         if l[0] not in main.keys():
             main[l[0]] = d
@@ -23,9 +29,7 @@ for line in sys.stdin:
             new_val = [round((((main[l[0]][0]*count)+d[0])/(count+1)), 2),
                        round((((main[l[0]][1]*count)+d[1])/(count+1)), 2), count+1]
             main.update({l[0]: new_val})
-for key in sorted(main.keys()):
-    ack = producer.send(tn, value={key: [main[key][0], main[key][1]]})
-    meta = ack.get()
+
 # for key,value in main.items():
 #    new_val=[value[0],value[1]]
 #    ack=producer.send(tn,value={key:new_val})
